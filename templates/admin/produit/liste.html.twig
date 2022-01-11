@@ -1,0 +1,64 @@
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <td colspan="10">{{ knp_pagination_render(produits) }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Référence</th>
+                <th>Catégorie</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Couleur</th>
+                <th>Public</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Taille</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.reference }}</td>
+                <td>{{ produit.categorie ? produit.categorie.libelle : ""  }}</td>
+                <td>{{ produit.titre }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.couleur }}</td>
+                <td>{{ produit.public }}</td>
+                <td>{{ produit.photo }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.stock }}</td>
+                <td>{{ produit.taille }}</td>
+                <td>
+                    <a href="{{ path('admin_produit_show', {'id': produit.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('admin_produit_edit', {'id': produit.id}) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('admin_produit_new') }}">Ajouter</a>
+
+<script>
+    $("a.page-link").on("click", function(evtClick){
+        evtClick.preventDefault();
+        $.ajax({
+            url: $(this).prop("href"),
+            dataType: "html",
+            success: function(donnees) {
+                $("#gestion-contenu").html(donnees);
+            },
+            error: function(jqXHR, status, error){
+                console.log(jqXHR);
+                $("#gestion-contenu").html("<div class='alert alert-danger'>" + status + " : " + error + "</div>");
+            }
+        });
+    });
+</script>

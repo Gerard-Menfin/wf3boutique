@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+
+{% block body %}
+    <form class="form-inline my-2 my-lg-0 mb-2" action="{{ path("recherche_prix") }}">
+        <label for="">Par prix</label>
+      <input class="form-control mr-sm-2" type="search" placeholder="prix inférieur à" aria-label="Search" name="mot">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+    <br>
+    <form class="form-inline my-2 my-lg-0" action="">
+        <label>Par catégories: </label>
+      <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search" name="mot">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+
+    <hr>
+
+    {% block resultats %}{% endblock %}
+{% endblock %}
