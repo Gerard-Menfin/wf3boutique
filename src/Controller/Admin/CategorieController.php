@@ -90,4 +90,12 @@ class CategorieController extends AbstractController
 
         return $this->redirectToRoute('admin_categorie_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/test", name="admin_categorie_test", methods={"POST"})
+     */
+    public function test(Request $request, Categorie $categorie, EntityManagerInterface $entityManager): Response
+    {
+        return $this->redirectToRoute('admin_categorie_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
