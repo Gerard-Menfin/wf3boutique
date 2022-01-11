@@ -34,4 +34,6 @@ $(function(){
             }
         });
     });
+
+    alert("dév de la branche front");
 })
